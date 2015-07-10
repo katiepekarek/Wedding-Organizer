@@ -17,18 +17,21 @@ ActiveRecord::Schema.define(version: 20150707185935) do
   enable_extension "plpgsql"
 
   create_table "brides", force: :cascade do |t|
+    t.integer  "wedding_id"
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "grooms", force: :cascade do |t|
+    t.integer  "wedding_id"
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "guests", force: :cascade do |t|
+    t.integer  "wedding_id"
     t.string   "name"
     t.integer  "inviter_id"
     t.string   "inviter_type"
@@ -39,6 +42,7 @@ ActiveRecord::Schema.define(version: 20150707185935) do
   add_index "guests", ["inviter_type", "inviter_id"], name: "index_guests_on_inviter_type_and_inviter_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
+    t.integer  "weddings_id"
     t.string   "amount_in_cents"
     t.integer  "vendor_id"
     t.datetime "created_at",      null: false
@@ -66,7 +70,15 @@ ActiveRecord::Schema.define(version: 20150707185935) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "vendors", force: :cascade do |t|
+    t.integer  "wedding_id"
     t.string   "name"
+    t.string   "budget"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "weddings", force: :cascade do |t|
+    t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
