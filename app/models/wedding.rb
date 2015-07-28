@@ -5,4 +5,5 @@ class Wedding < ActiveRecord::Base
 
   has_many :brides
   has_many :brides_guests, through: :brides
+  belongs_to :user
 end

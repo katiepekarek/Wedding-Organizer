@@ -1,0 +1,2 @@
+class GroomController < ApplicationController
+end

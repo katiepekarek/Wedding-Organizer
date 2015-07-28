@@ -1,0 +1,8 @@
+<section class='grooms'>
+  <%= render partial: "grooms/groom", collection: @wedding.grooms %>
+  <%= link_to "Add Groom", new_groom_path %>
+</section>
+
+<section class='brides'>
+  <%#= render partial: "/brides", object: @wedding %>
+</section>
